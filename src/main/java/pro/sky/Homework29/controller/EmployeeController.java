@@ -34,12 +34,12 @@ public class EmployeeController {
         return employeeService.getEmployee(lastName, firstName, salary, department);
     }
 
-    @GetMapping(value ="/departments/all")
+    @GetMapping(value = "/departments/all")
     public Map<Integer, List<Employee>> getEmploeeysGroupedByDepartments() {
         return employeeService.getEmploeeysGroupedByDepartments();
     }
 
-    @GetMapping(value = "/departments/all",params = "departmentId")
+    @GetMapping(value = "/departments/all", params = "departmentId")
     public List<Employee> getEmployeesByiDepartmentID(@RequestParam Integer departmentId) {
         return employeeService.getEmployeesByiDepartmentID(departmentId);
     }

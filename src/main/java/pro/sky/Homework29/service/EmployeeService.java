@@ -62,11 +62,9 @@ public class EmployeeService {
                 .collect(Collectors.toList()).stream().max(Comparator.comparingInt(Employee::getSalary)).orElseGet(() -> null);
     }
 
-    public Map<Integer,List<Employee>> getEmploeeysGroupedByDepartments() {
+    public Map<Integer, List<Employee>> getEmploeeysGroupedByDepartments() {
         return employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
     }
-
-
 
 
 }
