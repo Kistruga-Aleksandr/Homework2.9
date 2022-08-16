@@ -1,5 +1,7 @@
 package pro.sky.Homework29;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.Objects;
 
 public class Employee {
@@ -12,8 +14,8 @@ public class Employee {
 
 
     public Employee(String lastName, String firstName, Integer salary, Integer department) {
-        this.lastName = lastName;
-        this.firstName = firstName;
+        this.lastName = StringUtils.capitalize(lastName.toLowerCase());
+        this.firstName = StringUtils.capitalize(firstName.toLowerCase());
         this.salary = salary;
         this.department = department;
     }

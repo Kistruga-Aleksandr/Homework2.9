@@ -1,10 +1,12 @@
 package pro.sky.Homework29.service;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import pro.sky.Homework29.Employee;
 import pro.sky.Homework29.WorkingExceptions.EmployeeAlreadyAddedException;
 import pro.sky.Homework29.WorkingExceptions.EmployeeNotFoundException;
 import pro.sky.Homework29.WorkingExceptions.EmployeeStorageIsFullException;
+import pro.sky.Homework29.WorkingExceptions.InvalidInputExceptions;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -29,6 +31,7 @@ public class EmployeeService {
     ));
 
     public List<Employee> removeEmployee(String lastName, String firstName, Integer salary, Integer department) {
+        validateInput(lastName,firstName);
         Employee employee = new Employee(lastName, firstName, salary, department);
         if (!employees.contains(employee)) {
             throw new EmployeeNotFoundException();
@@ -38,6 +41,7 @@ public class EmployeeService {
     }
 
     public List<Employee> getEmployee(String lastName, String firstName, Integer salary, Integer department) {
+        validateInput(lastName,firstName);
         Employee employee = new Employee(lastName, firstName, salary, department);
         if (!employees.contains(employee)) {
             throw new EmployeeNotFoundException();
@@ -64,6 +68,12 @@ public class EmployeeService {
 
     public Map<Integer, List<Employee>> getEmploeeysGroupedByDepartments() {
         return employees.stream().collect(Collectors.groupingBy(Employee::getDepartment));
+    }
+
+    private void validateInput(String lastName, String firstName) {
+        if (!(StringUtils.isAlpha(lastName) && StringUtils.isAlpha(firstName))) {
+            throw new InvalidInputExceptions();
+        }
     }
 
 
